@@ -118,6 +118,15 @@ function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
 
+function createData(id, date, name, shipTo, paymentMethod, amount) {
+  let current_datetime = new Date()
+  let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
+  date = formatted_date.toString();
+  return { id, date , name, shipTo, paymentMethod, amount };
+}
+
+let rows = [];
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -142,7 +151,10 @@ export default function Dashboard() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const addData = () =>{
+    rows.unshift(createData(rand(), '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', rand()))
+    handleOpen();
+  };
   return (
     <div>
       <Grid container spacing={3}>
@@ -161,13 +173,13 @@ export default function Dashboard() {
         {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Orders />
+            <Orders data = {rows} />
           </Paper>
 
         </Grid>
       </Grid>
       <div>
-        <Fab color="primary" aria-label="add" className={classes.fab} onClick={handleOpen}>
+        <Fab color="primary" aria-label="add" className={classes.fab} onClick={addData}>
           <AddIcon />
         </Fab>
         <Modal

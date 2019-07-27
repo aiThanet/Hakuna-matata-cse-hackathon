@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -49,7 +49,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {props.data.map(row => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
@@ -62,7 +62,7 @@ export default function Orders() {
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="javascript:;">
-          See more orders
+          See more
         </Link>
       </div>
     </React.Fragment>

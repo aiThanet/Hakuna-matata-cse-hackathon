@@ -10,6 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Modal from '@material-ui/core/Modal';
 
 import Chart from "./Chart";
+import Redeem from "../Redeem/Redeem"
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { Divider } from "@material-ui/core";
@@ -148,7 +149,7 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <Chart />
+            <Redeem />
           </Paper>
         </Grid>
         {/* Recent Deposits */}

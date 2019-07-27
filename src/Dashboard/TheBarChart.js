@@ -8,15 +8,12 @@ const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
 function RenderBarChart(props) {
   console.log(props.data)
   return <BarChart width={600} height={300} data={props.data}
-  margin={{
-    top: 5, right: 30, left: 20, bottom: 5,
-  }}
   >
     <XAxis 
     dataKey="date"
     dy='25'
     />
-    <YAxis type="number" domain={[0, 'dataMax + 1']}/>
+    <YAxis type="number" domain={[0, 'dataMax + 5']}/>
     <Bar type="monotone" dataKey="uv" barSize={30} fill="#8884d8"
       label={renderCustomBarLabel}/>
   </BarChart>

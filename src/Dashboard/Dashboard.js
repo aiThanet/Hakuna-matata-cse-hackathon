@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   appBar: {
-    backgroundColor: '#B7E083',
+    backgroundColor: "#B7E083",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -101,6 +101,10 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 240
+  },
+  logo: {
+    fontSize: "2em",
+    paddingLeft: "2px"
   }
 }));
 
@@ -142,7 +146,8 @@ export default function Dashboard({ match }) {
             noWrap
             className={classes.title}
           >
-            Quest
+            <img width="30" height="30" src="/logo.png" />
+            <span className={classes.logo}>uest</span>
           </Typography>
         </Toolbar>
       </AppBar>

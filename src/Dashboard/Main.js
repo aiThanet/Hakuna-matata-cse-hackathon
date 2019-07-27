@@ -5,10 +5,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import { Divider } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -88,7 +91,16 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 240
-  }
+  },
+  fab: {
+    margin: 0,
+    top: "auto",
+    right: 20,
+    bottom: 20,
+    left: "auto",
+    position: "fixed",
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function Dashboard() {
@@ -97,6 +109,7 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
+    <div>
     <Grid container spacing={3}>
       {/* Chart */}
       <Grid item xs={12} md={8} lg={9}>
@@ -115,7 +128,14 @@ export default function Dashboard() {
         <Paper className={classes.paper}>
           <Orders />
         </Paper>
+
       </Grid>
     </Grid>
+    <div>
+    <Fab color="primary" aria-label="add" className={classes.fab} onClick= {() => {alert("HELLO")}}>
+        <AddIcon />
+    </Fab>
+    </div>
+    </div>
   );
 }

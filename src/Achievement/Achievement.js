@@ -11,6 +11,7 @@ class Achievement extends React.Component {
   };
 
   render() {
+
     console.log(this.context);
     return (
       <div>
@@ -18,6 +19,7 @@ class Achievement extends React.Component {
         <button onClick={this.test}>click</button>
       </div>
     );
+
   }
 }
 

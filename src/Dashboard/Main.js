@@ -5,12 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import Modal from '@material-ui/core/Modal';
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import Modal from "@material-ui/core/Modal";
 
 import Chart from "./Chart";
-import TheBarChart from "./TheBarChart"
+import TheBarChart from "./TheBarChart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { Divider } from "@material-ui/core";
@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   appBar: {
-
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -102,35 +101,50 @@ const useStyles = makeStyles(theme => ({
     bottom: 20,
     left: "auto",
     position: "fixed",
-    margin: theme.spacing(1),
+    margin: theme.spacing(1)
   },
   paperM: {
-    position: 'absolute',
+    position: "absolute",
     width: 300,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
-    outline: 'none',
-  },
+    outline: "none"
+  }
 }));
 
-let rows = [];    // user history
+let rows = [
+  { id: 1, date: "2019-7-27 16:32:53", pointsAdded: 20, pointsTotal: 35 },
+  { id: 0, date: "2019-7-26 13:32:53", pointsAdded: 15, pointsTotal: 15 }
+]; // user history
 let userPoints = 35; // user starting points
 let pointToday = 0;
-let chartData = [{date: '2019-7-26', uv: 15},{date: '2019-7-27', uv: 20}]; // for chart data, should contain the history of previous days
+let chartData = [{ date: "2019-7-26", uv: 15 }, { date: "2019-7-27", uv: 20 }]; // for chart data, should contain the history of previous days
+let id = 2;
 
 function rand() {
-  return Math.round(Math.random() * 20) - 10;
+  return id++;
 }
 
 function createData(id, date, pointsAdded) {
-  let current_datetime = new Date()
-  let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
+  let current_datetime = new Date();
+  let formatted_date =
+    current_datetime.getFullYear() +
+    "-" +
+    (current_datetime.getMonth() + 1) +
+    "-" +
+    current_datetime.getDate() +
+    " " +
+    current_datetime.getHours() +
+    ":" +
+    current_datetime.getMinutes() +
+    ":" +
+    current_datetime.getSeconds();
   date = formatted_date.toString();
-  userPoints = userPoints + 5
-  pointToday = pointToday + 5
-  let pointsTotal = userPoints
+  userPoints = userPoints + 5;
+  pointToday = pointToday + 5;
+  let pointsTotal = userPoints;
   return { id, date, pointsAdded, pointsTotal };
 }
 
@@ -140,9 +154,9 @@ function getModalStyle() {
 
   return {
     top: `${top}%`,
-    margin: 'auto',
+    margin: "auto",
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    transform: `translate(-${top}%, -${left}%)`
   };
 }
 
@@ -159,18 +173,23 @@ export default function Dashboard() {
     setOpen(false);
   };
   const addData = () => {
-    let current_datetime = new Date()
-    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-    rows.unshift(createData(rand(), 'date', 5))
-    let isIn = false
-    chartData.forEach(ele=>{
-      if(ele.date == formatted_date){
-        ele.uv += 5
-        isIn = true
+    let current_datetime = new Date();
+    let formatted_date =
+      current_datetime.getFullYear() +
+      "-" +
+      (current_datetime.getMonth() + 1) +
+      "-" +
+      current_datetime.getDate();
+    rows = [createData(rand(), "date", 5)].concat(rows);
+    let isIn = false;
+    chartData.forEach(ele => {
+      if (ele.date === formatted_date) {
+        ele.uv += 5;
+        isIn = true;
       }
-    })
-    if(!isIn)
-      chartData = chartData.concat([{date: formatted_date, uv: pointToday}])
+    });
+    if (!isIn)
+      chartData = chartData.concat([{ date: formatted_date, uv: pointToday }]);
     handleOpen();
   };
   return (
@@ -179,13 +198,13 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <TheBarChart data = {chartData}/>
+            <TheBarChart data={chartData} />
           </Paper>
         </Grid>
         {/* Recent Deposits */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
-            <Deposits points = {userPoints} />
+            <Deposits points={userPoints} />
           </Paper>
         </Grid>
         {/* Recent Orders */}
@@ -193,11 +212,15 @@ export default function Dashboard() {
           <Paper className={classes.paper}>
             <Orders data={rows} />
           </Paper>
-
         </Grid>
       </Grid>
       <div>
-        <Fab color="primary" aria-label="add" className={classes.fab} onClick={addData}>
+        <Fab
+          color="primary"
+          aria-label="add"
+          className={classes.fab}
+          onClick={addData}
+        >
           <AddIcon />
         </Fab>
         <Modal
@@ -205,13 +228,11 @@ export default function Dashboard() {
           aria-describedby="simple-modal-description"
           open={open}
           onClose={handleClose}
-          style={{ alignItems: 'center', justifyContent: 'center' }}
+          style={{ alignItems: "center", justifyContent: "center" }}
         >
           <div style={modalStyle} className={classes.paperM}>
             <h2 id="modal-title">One Bottle Recycled</h2>
-            <p id="simple-modal-description">
-              Keep them coming
-          </p>
+            <p id="simple-modal-description">Keep them coming</p>
           </div>
         </Modal>
       </div>

@@ -117,6 +117,7 @@ const useStyles = makeStyles(theme => ({
 
 let rows = [];    // user history
 let userPoints = 0; // user starting points
+let chartData = []; // for chart data, should contain the history of previous days
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -156,7 +157,10 @@ export default function Dashboard() {
     setOpen(false);
   };
   const addData = () => {
+    let current_datetime = new Date()
+    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
     rows.unshift(createData(rand(), 'date', 1))
+    chartData = [{date: formatted_date, uv: userPoints/5}]
     handleOpen();
   };
   return (
@@ -165,7 +169,7 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <TheBarChart />
+            <TheBarChart data = {chartData}/>
           </Paper>
         </Grid>
         {/* Recent Deposits */}

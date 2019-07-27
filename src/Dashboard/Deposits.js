@@ -12,20 +12,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Deposits() {
+export default function Deposits(props) {
   const classes = useStyles();
+  let current_datetime = new Date()
+  let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Total Points</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        {props.points}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+        {formatted_date}
       </Typography>
       <div>
         <Link color="primary" href="javascript:;">
-          View balance
         </Link>
       </div>
     </React.Fragment>

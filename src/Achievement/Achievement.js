@@ -2,7 +2,11 @@ import React from "react";
 
 class Achievement extends React.Component {
   render() {
-    return <div>Achievement Page</div>;
+    return (
+      <div>Achievement Page
+        <h1>Coming Soon</h1>
+      </div>
+    )
   }
 }
 

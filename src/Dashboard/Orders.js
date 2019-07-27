@@ -18,9 +18,6 @@ function createData(id, date, pointsAdded, pointsTotal) {
 const rows = [
   createData(0, '16 Mar, 2019', '+5', '30'),
   createData(1, '16 Mar, 2019', '+10', '40'),
-  // createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  // createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  // createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ];
 
 const useStyles = makeStyles(theme => ({
@@ -29,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -43,7 +40,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {props.data.map(row => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.pointsAdded}</TableCell>
@@ -54,7 +51,7 @@ export default function Orders() {
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="javascript:;">
-          See more orders
+          See more
         </Link>
       </div>
     </React.Fragment>

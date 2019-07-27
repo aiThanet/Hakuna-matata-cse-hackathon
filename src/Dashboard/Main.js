@@ -10,10 +10,9 @@ import AddIcon from '@material-ui/icons/Add';
 import Modal from '@material-ui/core/Modal';
 
 import Chart from "./Chart";
-import Redeem from "../Redeem/Redeem"
+import TheBarChart from "./TheBarChart"
 import Deposits from "./Deposits";
 import Orders from "./Orders";
-import Redeem from "../Redeem/Redeem"
 import { Divider } from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -119,12 +118,11 @@ const useStyles = makeStyles(theme => ({
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
-
-function createData(id, date, name, shipTo, paymentMethod, amount) {
+function createData(id, date, pointsAdded, pointsTotal) {
   let current_datetime = new Date()
   let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
   date = formatted_date.toString();
-  return { id, date , name, shipTo, paymentMethod, amount };
+  return { id, date, pointsAdded, pointsTotal };
 }
 
 let rows = [];
@@ -154,7 +152,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const addData = () =>{
-    rows.unshift(createData(rand(), '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', rand()))
+    rows.unshift(createData(rand(), 'date', 1,1))
     handleOpen();
   };
   return (
@@ -163,7 +161,7 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <Redeem />
+            <TheBarChart />
           </Paper>
         </Grid>
         {/* Recent Deposits */}

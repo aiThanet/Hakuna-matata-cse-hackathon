@@ -37,7 +37,7 @@ const RenderBarChart = (
 class Redeem extends React.Component {
 
   render() {
-    return <div> 
+    return <div>
     {RenderBarChart}
     </div>
   }

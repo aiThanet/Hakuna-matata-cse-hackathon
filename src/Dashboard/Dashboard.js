@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   appBar: {
+    backgroundColor: '#B7E083',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -141,7 +142,7 @@ export default function Dashboard({ match }) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Quest
           </Typography>
         </Toolbar>
       </AppBar>

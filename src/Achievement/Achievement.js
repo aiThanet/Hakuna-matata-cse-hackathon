@@ -3,7 +3,7 @@ import React from "react";
 import { SystemContext } from "../SystemContext.js";
 
 class Achievement extends React.Component {
-  static contextType = SystemContext;
+  // static contextType = SystemContext;
 
   test = () => {
     this.context.current_user += 1;

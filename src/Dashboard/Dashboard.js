@@ -1,3 +1,4 @@
+
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
+
 
 import { Switch, Route } from "react-router-dom";
 
@@ -40,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: '#B7E083',
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -118,6 +121,7 @@ export default function Dashboard({ match }) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        // iconElementLeft = {<img src = 'logo' alt ="Logo"/>}
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
@@ -141,8 +145,11 @@ export default function Dashboard({ match }) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            
+            FRONT PAGE
+            < className={classes.menuButton} img src = '/hac.png' width='30'  />
           </Typography>
+
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />

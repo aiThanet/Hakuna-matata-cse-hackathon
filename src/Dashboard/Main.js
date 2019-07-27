@@ -132,9 +132,9 @@ export default function Dashboard() {
       </Grid>
     </Grid>
     <div>
-    <Fab color="primary" aria-label="add" className={classes.fab}>
+    <Fab color="primary" aria-label="add" className={classes.fab} onClick= {() => {alert("HELLO")}}>
         <AddIcon />
-      </Fab>
+    </Fab>
     </div>
     </div>
   );

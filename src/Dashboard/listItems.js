@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,32 +15,38 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 
 export const mainListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
+    <Link to="/dashboard">
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+    </Link>
 
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Achievement" />
-    </ListItem>
+    <Link to="/dashboard/achievement">
+      <ListItem button>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Achievement" />
+      </ListItem>
+    </Link>
 
-    <ListItem button>
-      <ListItemIcon>
-        <StarIcon />
-      </ListItemIcon>
-      <ListItemText primary="Redeem Points" />
-    </ListItem>
+    <Link to="/dashboard/redeem">
+      <ListItem button>
+        <ListItemIcon>
+          <StarIcon />
+        </ListItemIcon>
+        <ListItemText primary="Redeem Points" />
+      </ListItem>
+    </Link>
   </div>
 );
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
+    <ListSubheader inset />
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />

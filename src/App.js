@@ -11,9 +11,9 @@ import Dashboard from "./Dashboard/Dashboard.js";
 function App() {
   return (
     <Switch>
-      <Route exact path="/signin" component={Signin} />
+      <Route path="/signin" component={Signin} />
       <Route path="/signup" component={Signup} />
-      <Route path="/" component={Dashboard} />
+      <Route path="/dashboard" component={Dashboard} />
     </Switch>
   );
 }

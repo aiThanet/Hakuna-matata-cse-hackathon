@@ -115,17 +115,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+let rows = [];    // user history
+let userPoints = 35; // user starting points
+let pointToday = 0;
+let chartData = [{date: '2019-7-26', uv: 15},{date: '2019-7-27', uv: 20}]; // for chart data, should contain the history of previous days
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
-function createData(id, date, pointsAdded, pointsTotal) {
+
+function createData(id, date, pointsAdded) {
   let current_datetime = new Date()
   let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
   date = formatted_date.toString();
+  userPoints = userPoints + 5
+  pointToday = pointToday + 5
+  let pointsTotal = userPoints
   return { id, date, pointsAdded, pointsTotal };
 }
-
-let rows = [];
 
 function getModalStyle() {
   const top = 50;
@@ -151,8 +158,19 @@ export default function Dashboard() {
   const handleClose = () => {
     setOpen(false);
   };
-  const addData = () =>{
-    rows.unshift(createData(rand(), 'date', 1,1))
+  const addData = () => {
+    let current_datetime = new Date()
+    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
+    rows.unshift(createData(rand(), 'date', 5))
+    let isIn = false
+    chartData.forEach(ele=>{
+      if(ele.date == formatted_date){
+        ele.uv += 5
+        isIn = true
+      }
+    })
+    if(!isIn)
+      chartData = chartData.concat([{date: formatted_date, uv: pointToday}])
     handleOpen();
   };
   return (
@@ -161,19 +179,19 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <TheBarChart />
+            <TheBarChart data = {chartData}/>
           </Paper>
         </Grid>
         {/* Recent Deposits */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
-            <Deposits />
+            <Deposits points = {userPoints} />
           </Paper>
         </Grid>
         {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Orders data = {rows} />
+            <Orders data={rows} />
           </Paper>
 
         </Grid>

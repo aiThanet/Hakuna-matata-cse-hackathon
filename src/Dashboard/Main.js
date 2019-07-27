@@ -11,6 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import Redeem from "../Redeem/Redeem"
 import { Divider } from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -30,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar
   },
   appBar: {
+
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -80,8 +82,8 @@ const useStyles = makeStyles(theme => ({
     overflow: "auto"
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6)
   },
   paper: {
     padding: theme.spacing(2),
@@ -90,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   fixedHeight: {
-    height: 240
+    height: 340
   },
   fab: {
     margin: 0,
@@ -108,13 +110,14 @@ export default function Dashboard() {
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+
   return (
     <div>
     <Grid container spacing={3}>
       {/* Chart */}
       <Grid item xs={12} md={8} lg={9}>
         <Paper className={fixedHeightPaper}>
-          <Chart />
+          <Redeem />
         </Paper>
       </Grid>
       {/* Recent Deposits */}

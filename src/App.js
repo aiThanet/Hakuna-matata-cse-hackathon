@@ -4,16 +4,16 @@ import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 
-import Signin from "./Signin.js";
-import Signup from "./Signup.js";
+import Signin from "./Signin/Signin.js";
+import Signup from "./Signup/Signup.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={Signin} />
+      <Route exact path="/signin" component={Signin} />
       <Route path="/signup" component={Signup} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/" component={Dashboard} />
     </Switch>
   );
 }
